@@ -1,9 +1,7 @@
-;; The first three lines of this file were inserted by DrRacket. They record metadata
-;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-intermediate-reader.ss" "lang")((modname merge-sort) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+#lang racket
+
 ;; merge-lists : [List-of Number] -> [List-of Number]
 ;; merges two sorted lists with each other
-(check-expect (merge-lists (list 1 3 4) (list 2 5 6)) (list 1 2 3 4 5 6))
 (define (merge-lists lon1 lon2)
   (cond [(empty? lon1) lon2]
         [(empty? lon2) lon1]
@@ -13,7 +11,6 @@
 
 ;; list->lol : [List-of X] -> [List-of [List-of X]]
 ;; converts every item of a list into an individual cons
-(check-expect (list->lol (list 1 2)) (list (list 1) (list 2)))
 (define (list->lol alist)
   (cond [(empty? alist) empty]
         [else (cons (cons (first alist) empty) (list->lol (rest alist)))]))
@@ -39,6 +36,5 @@
 
 ;; sort-numbers : [List-of Number] -> [List-of Number]
 ;; sorts a list of numbers
-(check-expect (sort-numbers (list 5 3 2 4 1)) (list 1 2 3 4 5))
 (define (sort-numbers alon)
   (merge-sort (list->lol alon)))
